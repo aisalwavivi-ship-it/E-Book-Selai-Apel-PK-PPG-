@@ -1,0 +1,17 @@
+{
+  "name": "Buku Saku Resep Selai Apel & UMKM Sumbergondo",
+  "short_name": "Selai Apel",
+  "description": "E-Book Interaktif Resep Selai Apel Anna & Aneka Olahan Jajanan UMKM Desa Sumbergondo, Bumiaji, Kota Batu.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#7f1d1d",
+  "theme_color": "#7f1d1d",
+  "icons": [
+    {
+      "src": "/src/assets/images/apple_cover_circle_badge_1786597025185.jpg",
+      "sizes": "192x192 512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

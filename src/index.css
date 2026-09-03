@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+  .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .font-sans {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+  .font-handwriting {
+    font-family: 'Caveat', cursive;
+  }
+}
+
+/* Custom book page shadow and print styles */
+@page {
+  size: auto;
+  margin: 8mm 10mm;
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: #1a0608 !important;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-page-break {
+    page-break-before: always;
+  }
+
+  /* 1. When printing single recipe from modal */
+  body[data-print-mode="recipe"] #printable-book-container {
+    display: none !important;
+  }
+  body[data-print-mode="recipe"] #packaging-label-print-sheet {
+    display: none !important;
+  }
+  body[data-print-mode="recipe"] #recipe-print-sheet {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    color: #1a0608 !important;
+  }
+  body:not([data-print-mode="recipe"]) #recipe-print-sheet {
+    display: none !important;
+  }
+
+  /* 2. When printing packaging label sheet */
+  body[data-print-mode="label"] #printable-book-container {
+    display: none !important;
+  }
+  body[data-print-mode="label"] #recipe-print-sheet {
+    display: none !important;
+  }
+  body[data-print-mode="label"] #packaging-label-print-sheet {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+  body:not([data-print-mode="label"]) #packaging-label-print-sheet {
+    display: none !important;
+  }
+}
+
+/* Book page curl / elevation styling */
+.book-shadow {
+  box-shadow: 0 15px 35px -5px rgba(185, 28, 28, 0.22), 0 6px 12px -2px rgba(185, 28, 28, 0.12), inset 0 0 0 1px rgba(185, 28, 28, 0.05);
+}
+
+.dark .book-shadow {
+  box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.75), 0 8px 18px -4px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.book-spine-left {
+  background: linear-gradient(to right, rgba(127, 29, 29, 0.28) 0%, rgba(127, 29, 29, 0.08) 5%, transparent 18%);
+}
+
+.dark .book-spine-left {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.25) 5%, transparent 18%);
+}
+
+.book-spine-right {
+  background: linear-gradient(to left, rgba(127, 29, 29, 0.28) 0%, rgba(127, 29, 29, 0.08) 5%, transparent 18%);
+}
+
+.dark .book-spine-right {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.25) 5%, transparent 18%);
+}
+
+.book-spine-center {
+  background: linear-gradient(to right, transparent 0%, rgba(127, 29, 29, 0.08) 48%, rgba(127, 29, 29, 0.22) 50%, rgba(127, 29, 29, 0.08) 52%, transparent 100%);
+}
+
+.dark .book-spine-center {
+  background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.3) 48%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.3) 52%, transparent 100%);
+}
+
+/* 3D Page Turn Perspective & Dog-Ear Corner Curl */
+.perspective-book {
+  perspective: 2200px;
+  perspective-origin: center center;
+}
+
+.page-dogear-corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 32px 32px;
+  border-color: transparent transparent rgba(153, 27, 27, 0.18) transparent;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(-2px -2px 3px rgba(0, 0, 0, 0.12));
+}
+
+.dark .page-dogear-corner {
+  border-color: transparent transparent rgba(251, 191, 36, 0.25) transparent;
+  filter: drop-shadow(-2px -2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.page-dogear-corner:hover {
+  border-width: 0 0 44px 44px;
+  border-color: transparent transparent rgba(185, 28, 28, 0.35) transparent;
+}
+
+.dark .page-dogear-corner:hover {
+  border-color: transparent transparent rgba(251, 191, 36, 0.5) transparent;
+}
+
+.page-dogear-corner-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 32px 0 0 32px;
+  border-color: transparent transparent transparent rgba(153, 27, 27, 0.18);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(2px -2px 3px rgba(0, 0, 0, 0.12));
+}
+
+.dark .page-dogear-corner-left {
+  border-color: transparent transparent transparent rgba(251, 191, 36, 0.25);
+  filter: drop-shadow(2px -2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.page-dogear-corner-left:hover {
+  border-width: 44px 0 0 44px;
+  border-color: transparent transparent transparent rgba(185, 28, 28, 0.35);
+}
+
+.dark .page-dogear-corner-left:hover {
+  border-color: transparent transparent transparent rgba(251, 191, 36, 0.5);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #ffe4e6;
+}
+::-webkit-scrollbar-thumb {
+  background: #dc2626;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #991b1b;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}

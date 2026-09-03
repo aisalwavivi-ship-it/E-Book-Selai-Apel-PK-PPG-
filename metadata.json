@@ -1,0 +1,6 @@
+{
+  "name": "Buku Saku Resep Selai Apel",
+  "description": "E-Book Interaktif Buku Saku Resep Selai Apel & Aneka Olahan Jajanan UMKM Desa Sumbergondo",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
