@@ -81,14 +81,14 @@ export const PrintBookLayout: React.FC = () => {
                 {page.type === 'cover' && (
                   <div className="grid grid-cols-12 gap-6 items-center h-full py-1">
                     {/* Left Column: Mascot & Badges */}
-                    <div className="col-span-5 flex flex-col items-center justify-center text-center space-y-3.5 border-r-2 border-red-200/80 pr-6">
+                    <div className="col-span-4 flex flex-col items-center justify-center text-center space-y-3.5 border-r-2 border-red-200/80 pr-4">
                       <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-red-100 text-red-950 text-xs font-bold border-2 border-red-400 shadow-sm">
                         <Sparkles className="w-4 h-4 text-red-600 shrink-0" />
                         <span className="truncate">LUARAN PROYEK KEPEMIMPINAN</span>
                       </div>
 
                       <div className="relative">
-                        <div className="w-52 h-52 rounded-full overflow-hidden border-4 border-amber-400 shadow-xl bg-white flex items-center justify-center p-1.5 mx-auto">
+                        <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-amber-400 shadow-xl bg-white flex items-center justify-center p-1.5 mx-auto">
                           <img
                             src={appleMascotImg}
                             alt="Maskot Apel"
@@ -104,15 +104,15 @@ export const PrintBookLayout: React.FC = () => {
                     </div>
 
                     {/* Right Column: Title, Subtitle, Quote, Credits */}
-                    <div className="col-span-7 flex flex-col justify-between space-y-3 pl-2">
+                    <div className="col-span-8 flex flex-col justify-between space-y-3 pl-4">
                       <div>
                         <span className="inline-block text-xs font-bold text-red-700 tracking-widest uppercase mb-1">
                           PANDUAN PRAKTIS & DIVERSIFIKASI PRODUK
                         </span>
-                        <h1 className="font-serif text-4xl font-extrabold text-red-950 tracking-tight leading-tight">
+                        <h1 className="font-serif text-[28px] font-extrabold text-red-950 tracking-tight leading-snug whitespace-nowrap block">
                           {page.title}
                         </h1>
-                        <p className="font-sans text-sm text-red-800 mt-2 leading-relaxed font-medium">
+                        <p className="font-sans text-sm text-red-800 mt-2.5 leading-relaxed font-medium">
                           {page.subtitle}
                         </p>
                       </div>

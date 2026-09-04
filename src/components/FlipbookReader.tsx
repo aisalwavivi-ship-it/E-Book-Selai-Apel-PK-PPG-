@@ -556,7 +556,7 @@ export const FlipbookReader: React.FC<FlipbookReaderProps> = ({
           <div className="flex-1 my-1 sm:my-2">
             {/* 1. COVER PAGE */}
             {pageData.type === 'cover' && (
-              <div className="text-center py-1 sm:py-6 px-1 sm:px-6 flex flex-col items-center justify-center space-y-3.5 sm:space-y-6">
+              <div className="text-center py-1 sm:py-6 px-1 sm:px-3 flex flex-col items-center justify-center space-y-3.5 sm:space-y-6 w-full">
                 {/* 1. Logo / Mascot at the Top Center */}
                 <div className="relative group my-1">
                   <div className="absolute -inset-2 bg-gradient-to-r from-amber-400 via-red-500 to-emerald-500 rounded-full blur-md opacity-70 group-hover:opacity-90 transition duration-300"></div>
@@ -576,12 +576,12 @@ export const FlipbookReader: React.FC<FlipbookReaderProps> = ({
                 </div>
 
                 {/* 3. Title & Subtitle Below the Logo */}
-                <div className="space-y-1.5 sm:space-y-2.5 max-w-3xl px-1">
-                  <h1 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-red-950 dark:text-slate-100 tracking-tight leading-tight">
+                <div className="w-full max-w-full px-1 mx-auto flex flex-col items-center">
+                  <h1 className="font-serif text-[15px] xs:text-[18px] sm:text-2xl md:text-3xl lg:text-[35px] xl:text-[40px] font-extrabold text-red-950 dark:text-slate-100 tracking-tight leading-snug whitespace-nowrap text-center block w-full">
                     {pageData.title}
                   </h1>
 
-                  <p className="font-sans text-xs xs:text-sm sm:text-base md:text-xl text-red-900 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-medium">
+                  <p className="font-sans text-xs xs:text-sm sm:text-base md:text-lg text-red-900 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-medium mt-2 sm:mt-3 text-center">
                     {pageData.subtitle}
                   </p>
                 </div>
