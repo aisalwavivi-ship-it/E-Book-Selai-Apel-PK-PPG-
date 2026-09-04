@@ -28,10 +28,10 @@ export const TeamInfoModal: React.FC = () => {
 
           <div className="space-y-4 text-xs sm:text-sm text-red-900 dark:text-slate-200">
             <div className="p-4 rounded-2xl bg-rose-50 dark:bg-slate-800 border border-red-200 dark:border-slate-700 space-y-1">
-              <span className="text-[10px] uppercase font-bold text-red-700 dark:text-amber-400 block">Ketua Pelaksana</span>
-              <span className="font-bold text-base text-red-950 dark:text-slate-100 block">Camelia Nur Laili</span>
-              <span className="text-xs text-red-800 dark:text-slate-300 font-semibold block">Mahasiswa PGSD - UMM</span>
-              <span className="text-xs text-red-800 dark:text-slate-400 block">Prodi: Pendidikan Guru Sekolah Dasar (PGSD)</span>
+              <span className="text-[10px] uppercase font-bold text-red-700 dark:text-amber-400 block">Tim Pelaksana</span>
+              <span className="font-bold text-base text-red-950 dark:text-slate-100 block">Kelompok 2 PPG PGSD 4 Tahun 2026</span>
+              <span className="text-xs text-red-800 dark:text-slate-300 font-semibold block">PPG Prajabatan FKIP - UMM</span>
+              <span className="text-xs text-red-800 dark:text-slate-400 block">Prodi: Pendidikan Profesi Guru (PPG) PGSD</span>
             </div>
 
             <div className="p-4 rounded-2xl bg-rose-50 dark:bg-slate-800 border border-red-200 dark:border-slate-700 space-y-1">

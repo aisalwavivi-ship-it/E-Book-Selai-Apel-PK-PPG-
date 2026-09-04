@@ -123,7 +123,7 @@ export const PrintBookLayout: React.FC = () => {
                             "{page.content.quote.text}"
                           </p>
                           <p className="text-xs font-bold text-red-900 mt-1.5">
-                            — {page.content.quote.author} ({page.content.quote.role})
+                            — {page.content.quote.author}{page.content.quote.role ? ` (${page.content.quote.role})` : ''}
                           </p>
                         </div>
                       )}
@@ -134,7 +134,7 @@ export const PrintBookLayout: React.FC = () => {
                           <p className="text-red-800">Universitas Muhammadiyah Malang</p>
                         </div>
                         <div className="text-right border-l border-red-200 pl-4">
-                          <p className="font-bold text-red-950">Ketua: Camelia Nur Laili</p>
+                          <p className="font-bold text-red-950">Kelompok 2 PPG PGSD 4 Tahun 2026</p>
                           <p className="text-red-700">Dosen: Dr. Anis Farida Jamil, M.Pd.</p>
                         </div>
                       </div>
@@ -198,11 +198,11 @@ export const PrintBookLayout: React.FC = () => {
                         </div>
 
                         <div className="p-3 bg-red-50/70 rounded-xl border border-red-200 text-center text-xs">
-                          <p className="font-bold text-red-950">Ketua Pelaksana Program</p>
-                          <div className="h-10 flex items-center justify-center font-serif italic text-red-800 text-sm font-semibold">
-                            Camelia Nur Laili
+                          <p className="font-bold text-red-950">Tim Pelaksana Program</p>
+                          <div className="h-10 flex items-center justify-center font-serif text-red-800 text-xs sm:text-sm font-bold text-center px-1">
+                            Kelompok 2 PPG PGSD 4 Tahun 2026
                           </div>
-                          <p className="text-[11px] text-red-700 font-medium">NIM. Mahasiswa PGSD UMM</p>
+                          <p className="text-[11px] text-red-700 font-medium">PPG Prajabatan FKIP UMM</p>
                         </div>
                       </div>
 

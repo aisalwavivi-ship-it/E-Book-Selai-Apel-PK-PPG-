@@ -81,7 +81,7 @@ export interface BookPage {
     quote?: {
       text: string;
       author: string;
-      role: string;
+      role?: string;
     };
     tableData?: {
       headers: string[];
@@ -108,7 +108,7 @@ export const ebookMetadata: EbookMetadata = {
   subtitle: "Panduan Olahan Selai Apel Anna & Inovasi Jajanan Bernilai Tambah Bagi Masyarakat Desa Sumbergondo",
   edition: "Edisi Praktis Panduan UMKM",
   publisher: "Tim Proyek Kepemimpinan & Pengabdian Masyarakat",
-  author: "Camelia Nur Laili & Tim Mahasiswa PGSD",
+  author: "Kelompok 2 PPG PGSD 4 Tahun 2026",
   institution: "Universitas Muhammadiyah Malang",
   location: "Desa Sumbergondo, Bumiaji, Kota Batu",
   year: "Panduan Berkelanjutan",
@@ -482,8 +482,8 @@ export const bookPages: BookPage[] = [
       ],
       quote: {
         text: "Pemberdayaan Ekonomi Usaha Mikro, Kecil, dan Menengah (UMKM) Berbasis Kolaborasi Mahasiswa dan Masyarakat",
-        author: "Camelia Nur Laili",
-        role: "Ketua Pelaksana Proyek Kepemimpinan PGSD UMM"
+        author: "Kelompok 2 PPG PGSD 4 Tahun 2026",
+        role: ""
       }
     }
   },
@@ -500,7 +500,7 @@ export const bookPages: BookPage[] = [
       ],
       calloutBox: {
         title: "Informasi Dokumen Pengesahan",
-        text: "Dosen Pendamping: Dr. Anis Farida Jamil, M.Pd. | Ketua Pelaksana: Camelia Nur Laili (PGSD) | Lokasi: Desa Sumbergondo, Bumiaji, Batu",
+        text: "Dosen Pendamping: Dr. Anis Farida Jamil, M.Pd. | Kelompok 2 PPG PGSD 4 Tahun 2026 | Lokasi: Desa Sumbergondo, Bumiaji, Batu",
         type: "info"
       }
     }
@@ -622,7 +622,7 @@ export const bookPages: BookPage[] = [
         "Terima kasih kepada Dosen Pendamping Dr. Anis Farida Jamil, M.Pd., Pemerintah Desa Sumbergondo, Ketua Kelompok Tani, dan seluruh peserta pelatihan atas kolaborasi hebat ini."
       ],
       bulletPoints: [
-        "Ketua Pelaksana: Camelia Nur Laili",
+        "Kelompok 2 PPG PGSD 4 Tahun 2026",
         "Dosen Pendamping: Dr. Anis Farida Jamil, M.Pd.",
         "Program Studi: Pendidikan Guru Sekolah Dasar (PGSD)",
         "Institusi: Universitas Muhammadiyah Malang",

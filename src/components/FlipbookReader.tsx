@@ -593,7 +593,7 @@ export const FlipbookReader: React.FC<FlipbookReaderProps> = ({
                       "{pageData.content.quote.text}"
                     </p>
                     <p className="text-[11px] sm:text-sm font-bold text-red-900 dark:text-amber-300 mt-1.5 sm:mt-2">
-                      — {pageData.content.quote.author} ({pageData.content.quote.role})
+                      — {pageData.content.quote.author}{pageData.content.quote.role ? ` (${pageData.content.quote.role})` : ''}
                     </p>
                   </div>
                 )}
@@ -640,11 +640,11 @@ export const FlipbookReader: React.FC<FlipbookReaderProps> = ({
 
                   <div className="bg-white/95 dark:bg-slate-800 border-2 border-red-200/90 dark:border-slate-700 rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-2xs text-center">
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-amber-100 dark:bg-slate-700 text-amber-800 dark:text-amber-300 mx-auto flex items-center justify-center mb-1.5 sm:mb-2 font-bold text-base sm:text-lg">
-                      👩‍🏫
+                      👥
                     </div>
-                    <div className="text-[10px] sm:text-sm font-bold uppercase tracking-wider text-red-700 dark:text-amber-400">Ketua Pelaksana</div>
-                    <div className="font-serif font-bold text-sm sm:text-lg md:text-xl text-red-950 dark:text-slate-100 mt-0.5 sm:mt-1">Camelia Nur Laili</div>
-                    <div className="text-[11px] sm:text-sm text-red-800 dark:text-slate-400 mt-0.5">Mahasiswa PGSD FKIP UMM</div>
+                    <div className="text-[10px] sm:text-sm font-bold uppercase tracking-wider text-red-700 dark:text-amber-400">Tim Pelaksana</div>
+                    <div className="font-serif font-bold text-xs xs:text-sm sm:text-base text-red-950 dark:text-slate-100 mt-0.5 sm:mt-1 leading-snug">Kelompok 2 PPG PGSD 4 Tahun 2026</div>
+                    <div className="text-[11px] sm:text-sm text-red-800 dark:text-slate-400 mt-0.5">PPG Prajabatan FKIP UMM</div>
                   </div>
 
                   <div className="bg-white/95 dark:bg-slate-800 border-2 border-red-200/90 dark:border-slate-700 rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-2xs text-center">
