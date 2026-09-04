@@ -30,7 +30,7 @@ export const PdfExportProgressBar: React.FC<PdfExportProgressBarProps> = ({
     statusText = 'Sedang memproses berkas PDF...',
     currentPage,
     totalPages,
-    documentTitle = 'Buku Saku Selai Apel (PDF)',
+    documentTitle = 'Buku Resep Selai Apel dan Olahannya (PDF)',
     isCompleted = false,
   } = state;
 

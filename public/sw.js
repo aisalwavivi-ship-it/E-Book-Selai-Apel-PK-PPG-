@@ -1,7 +1,7 @@
-// Service Worker for Buku Saku Selai Apel Sumbergondo
-// Provides robust offline caching for e-book content, images, fonts, recipes, and bookmarks.
+// Service Worker for Buku Resep Selai Apel dan Olahannya Sumbergondo
+// Provides offline caching for e-book content, recipes, images, and fonts in production.
 
-const CACHE_NAME = 'sumbergondo-ebook-v1.2';
+const CACHE_NAME = 'sumbergondo-ebook-v2.0';
 
 // Core essential assets to precache on install
 const PRECACHE_ASSETS = [
@@ -16,7 +16,6 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
       console.log('[SW] Pre-caching offline application shell...');
-      // Use individual try-catch to avoid failing install if an external font or asset is temporarily unreachable
       for (const asset of PRECACHE_ASSETS) {
         try {
           await cache.add(asset);
@@ -46,7 +45,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch Event: Network-First for Navigation, Cache-First / Stale-While-Revalidate for Assets
+// Fetch Event: Network-First for Navigation, Cache-First with Network Fallback for Assets
 self.addEventListener('fetch', (event) => {
   const request = event.request;
 
@@ -56,6 +55,21 @@ self.addEventListener('fetch', (event) => {
   }
 
   const url = new URL(request.url);
+
+  // Mencegah Service Worker mengintersep/cache module Vite saat development
+  if (
+    url.pathname.startsWith('/node_modules') ||
+    url.pathname.startsWith('/@') ||
+    url.pathname.startsWith('/src') ||
+    url.pathname.endsWith('.ts') ||
+    url.pathname.endsWith('.tsx') ||
+    url.pathname.endsWith('.map') ||
+    url.search.includes('v=') ||
+    url.search.includes('import') ||
+    url.search.includes('t=')
+  ) {
+    return;
+  }
 
   // 1. Navigation requests (HTML page loads): Network-First, fall back to cached index.html
   if (request.mode === 'navigate') {
@@ -71,24 +85,22 @@ self.addEventListener('fetch', (event) => {
           return networkResponse;
         })
         .catch(async () => {
-          console.log('[SW] Offline navigate fallback to cached HTML:', request.url);
           const cachedResponse = await caches.match(request);
-          if (cachedResponse) return cachedResponse;
-          const cachedIndex = await caches.match('/index.html') || await caches.match('/');
-          if (cachedIndex) return cachedIndex;
-          return new Response('Mode Offline - Konten E-Book Tersimpan', {
-            headers: { 'Content-Type': 'text/html; charset=utf-8' },
-          });
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          return caches.match('/index.html');
         })
     );
     return;
   }
 
-  // 2. Google Fonts, Stylesheets, Images, and bundled JS/CSS: Cache-First or Stale-While-Revalidate
+  // 2. Static Assets & Resources: Cache-First with background revalidation
   const isStaticAsset =
     url.origin === self.location.origin ||
     url.hostname.includes('fonts.googleapis.com') ||
     url.hostname.includes('fonts.gstatic.com') ||
+    url.hostname.includes('images.unsplash.com') ||
     request.destination === 'image' ||
     request.destination === 'style' ||
     request.destination === 'script' ||
@@ -97,46 +109,37 @@ self.addEventListener('fetch', (event) => {
   if (isStaticAsset) {
     event.respondWith(
       caches.match(request).then((cachedResponse) => {
-        // Fetch in background and update cache (Stale-While-Revalidate)
-        const fetchPromise = fetch(request)
+        if (cachedResponse) {
+          // Revalidate in background if online
+          fetch(request)
+            .then((networkResponse) => {
+              if (networkResponse && networkResponse.status === 200) {
+                const responseClone = networkResponse.clone();
+                caches.open(CACHE_NAME).then((cache) => {
+                  cache.put(request, responseClone);
+                });
+              }
+            })
+            .catch(() => {});
+          return cachedResponse;
+        }
+
+        return fetch(request)
           .then((networkResponse) => {
-            if (networkResponse && (networkResponse.status === 200 || networkResponse.type === 'opaque')) {
-              const responseClone = networkResponse.clone();
-              caches.open(CACHE_NAME).then((cache) => {
-                cache.put(request, responseClone);
-              });
+            if (!networkResponse || networkResponse.status !== 200) {
+              return networkResponse;
             }
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, responseClone);
+            });
             return networkResponse;
           })
-          .catch(() => {
-            // Offline - no network
-            return cachedResponse;
+          .catch((error) => {
+            console.warn('[SW] Fetch failed offline for:', request.url, error);
+            return new Response('', { status: 503, statusText: 'Offline' });
           });
-
-        // Return cached version immediately if found, else wait for network
-        return cachedResponse || fetchPromise;
       })
     );
-    return;
-  }
-
-  // Default fallback: Try network, then fallback to cache
-  event.respondWith(
-    fetch(request)
-      .then((response) => {
-        if (response && response.status === 200) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-        }
-        return response;
-      })
-      .catch(() => caches.match(request))
-  );
-});
-
-// Listen for messages from client (e.g. manual precache or skip waiting)
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
   }
 });

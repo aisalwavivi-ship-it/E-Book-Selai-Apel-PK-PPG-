@@ -129,7 +129,7 @@ export const FlipbookReader: React.FC<FlipbookReaderProps> = ({
     statusText: '',
     currentPage: 0,
     totalPages: 10,
-    documentTitle: 'Buku Saku Kreasi Selai Apel (10 Halaman)',
+    documentTitle: 'Buku Resep Selai Apel dan Olahannya (10 Halaman)',
     isCompleted: false,
   });
 
@@ -180,7 +180,7 @@ export const FlipbookReader: React.FC<FlipbookReaderProps> = ({
         statusText: 'Menyiapkan berkas e-book lengkap...',
         currentPage: 1,
         totalPages: 10,
-        documentTitle: 'Buku Saku Kreasi Selai Apel (10 Halaman Lengkap)',
+        documentTitle: 'Buku Resep Selai Apel dan Olahannya (10 Halaman Lengkap)',
         isCompleted: false,
       });
 
@@ -193,7 +193,7 @@ export const FlipbookReader: React.FC<FlipbookReaderProps> = ({
             statusText: msg,
             currentPage: current,
             totalPages: total,
-            documentTitle: 'Buku Saku Kreasi Selai Apel (10 Halaman Lengkap)',
+            documentTitle: 'Buku Resep Selai Apel dan Olahannya (10 Halaman Lengkap)',
             isCompleted: false,
           });
         },
@@ -401,7 +401,7 @@ export const FlipbookReader: React.FC<FlipbookReaderProps> = ({
             <div className="flex items-center justify-between border-b border-red-800 dark:border-slate-700 pb-3 mb-4">
               <h3 className="font-serif font-bold text-red-200 dark:text-amber-300 flex items-center space-x-2">
                 <BookOpen className="w-4 h-4 text-red-400 dark:text-amber-400" />
-                <span>Daftar Isi Buku Saku</span>
+                <span>Daftar Isi Buku Resep Selai Apel dan Olahannya</span>
               </h3>
               <button
                 onClick={() => setShowTocDrawer(false)}
@@ -546,7 +546,7 @@ export const FlipbookReader: React.FC<FlipbookReaderProps> = ({
 
           {/* Watermark / Header line */}
           <div className="flex items-center justify-between border-b border-red-200/80 dark:border-slate-700/80 pb-2 sm:pb-3 mb-3 sm:mb-6 text-[10px] sm:text-xs text-red-800/80 dark:text-slate-400 uppercase tracking-widest font-semibold pr-14 xs:pr-18 sm:pr-32 relative z-10 gap-1 sm:gap-2 transition-colors">
-            <span className="truncate">{pageData.chapterTitle || 'BUKU SAKU RESEP SELAI APEL'}</span>
+            <span className="truncate">{pageData.chapterTitle || 'BUKU RESEP SELAI APEL DAN OLAHANNYA'}</span>
             <span className="font-serif italic font-normal text-red-700 dark:text-amber-400 whitespace-nowrap shrink-0 text-right mr-1 sm:mr-4 text-[9px] sm:text-xs">
               Desa Sumbergondo - Kota Batu
             </span>
@@ -563,7 +563,7 @@ export const FlipbookReader: React.FC<FlipbookReaderProps> = ({
                   <div className="relative w-36 h-36 xs:w-48 xs:h-48 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-3 sm:border-4 md:border-[5px] border-amber-300 shadow-xl sm:shadow-2xl bg-white dark:bg-slate-800 flex items-center justify-center p-1.5 sm:p-2 mx-auto">
                     <img
                       src={appleMascotImg}
-                      alt="Logo Maskot Apel Buku Saku Selai Apel Anna Desa Sumbergondo"
+                      alt="Logo Maskot Apel Buku Resep Selai Apel dan Olahannya Anna Desa Sumbergondo"
                       className="w-full h-full object-cover rounded-full transform group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>

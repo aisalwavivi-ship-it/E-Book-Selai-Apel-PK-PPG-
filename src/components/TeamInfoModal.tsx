@@ -84,7 +84,7 @@ export const TeamInfoModal: React.FC = () => {
                   <span>2. Tahap Eksperimentasi Formulasi</span>
                 </span>
                 <p className="text-red-800 dark:text-slate-300 text-xs pl-5">
-                  Uji coba pembuatan selai apel, perancangan kemasan jar kaca, dan penyusunan E-Book Buku Saku Resep ini.
+                  Uji coba pembuatan selai apel, perancangan kemasan jar kaca, dan penyusunan E-Book Buku Resep Selai Apel dan Olahannya ini.
                 </p>
               </div>
 
@@ -94,7 +94,7 @@ export const TeamInfoModal: React.FC = () => {
                   <span>3. Tahap Pemberdayaan & Pelatihan</span>
                 </span>
                 <p className="text-red-800 dark:text-slate-300 text-xs pl-5">
-                  Sosialisasi diversifikasi olahan apel, praktik pembuatan selai apel, pendampingan kemasan, dan distribusi Buku Saku.
+                  Sosialisasi diversifikasi olahan apel, praktik pembuatan selai apel, pendampingan kemasan, dan distribusi Buku Resep Selai Apel dan Olahannya.
                 </p>
               </div>
 

@@ -50,7 +50,7 @@ export const UmkmKitchenTipsModal: React.FC<UmkmKitchenTipsModalProps> = ({
   };
 
   const handleCopyTip = (tip: KitchenTipItem) => {
-    const textToCopy = `[TIPS DAPUR UMKM - ${tip.title}]\nAturan Utama: ${tip.keyRule}\nRingkasan: ${tip.shortSummary}\nDetail:\n${tip.details.map((d) => `- ${d}`).join('\n')}\n(Buku Saku Selai Apel Desa Sumbergondo)`;
+    const textToCopy = `[TIPS DAPUR UMKM - ${tip.title}]\nAturan Utama: ${tip.keyRule}\nRingkasan: ${tip.shortSummary}\nDetail:\n${tip.details.map((d) => `- ${d}`).join('\n')}\n(Buku Resep Selai Apel dan Olahannya Desa Sumbergondo)`;
     navigator.clipboard.writeText(textToCopy);
     setCopiedTipId(tip.id);
     setTimeout(() => setCopiedTipId(null), 2000);
@@ -401,7 +401,7 @@ export const UmkmKitchenTipsModal: React.FC<UmkmKitchenTipsModalProps> = ({
         {/* Modal Footer */}
         <div className="p-4 sm:px-6 bg-red-900 dark:bg-slate-950 text-white flex flex-wrap items-center justify-between gap-3 border-t border-red-800 dark:border-slate-800">
           <div className="text-xs text-red-200 dark:text-slate-400">
-            <strong>Sumber:</strong> Edisi Resmi Buku Saku Selai Apel • PGSD Universitas Muhammadiyah Malang 2026
+            <strong>Sumber:</strong> Edisi Resmi Buku Resep Selai Apel dan Olahannya • PGSD Universitas Muhammadiyah Malang 2026
           </div>
           <button
             onClick={onClose}

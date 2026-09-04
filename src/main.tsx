@@ -13,6 +13,6 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>
 );
 
-// Register service worker for offline caching of e-book and saved bookmarks
+// Register service worker: unregisters in DEV, activates offline caching in PROD
 registerServiceWorker();
 

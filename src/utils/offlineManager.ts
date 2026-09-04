@@ -16,13 +16,28 @@ export interface OfflineStatus {
 }
 
 const CACHE_TIMESTAMP_KEY = 'sumbergondo_offline_cache_timestamp';
-const CACHE_NAME = 'sumbergondo-ebook-v1.2';
+const CACHE_NAME = 'sumbergondo-ebook-v2.0';
 
 /**
  * Register Service Worker safely
  */
 export function registerServiceWorker(onUpdate?: (registration: ServiceWorkerRegistration) => void) {
   if (typeof window === 'undefined' || !('serviceWorker' in navigator)) {
+    return;
+  }
+
+  // In development mode, unregister any active service worker and clear caches to prevent stale Vite modules
+  if (import.meta.env.DEV) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (const reg of registrations) {
+        reg.unregister();
+      }
+    });
+    if ('caches' in window) {
+      caches.keys().then((keys) => {
+        keys.forEach((key) => caches.delete(key));
+      });
+    }
     return;
   }
 

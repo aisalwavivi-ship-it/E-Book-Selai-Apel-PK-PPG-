@@ -66,7 +66,7 @@ export async function generateHighQualityBookPdf(
   }
 
   options?.onProgress?.(totalPages, totalPages, 'Menyimpan berkas PDF...');
-  pdf.save('Buku_Saku_Kreasi_Selai_Apel_Desa_Sumbergondo.pdf');
+  pdf.save('Buku_Resep_Selai_Apel_dan_Olahannya.pdf');
 }
 
 /**

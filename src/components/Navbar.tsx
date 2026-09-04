@@ -56,7 +56,7 @@ const NAV_ITEMS: NavItem[] = [
     id: 'flipbook',
     label: 'E-Book Interaktif',
     shortLabel: 'E-Book',
-    description: '10 Halaman buku saku interaktif dengan efek membalik halaman nyata',
+    description: '10 Halaman buku resep interaktif dengan efek membalik halaman nyata',
     icon: BookOpen,
     emoji: '📖',
     badge: '10 Hal',
@@ -180,7 +180,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <div className="min-w-0">
                   <div className="flex items-center space-x-1.5">
                     <h1 className="font-serif text-sm sm:text-base font-bold tracking-tight text-red-100 dark:text-amber-200 group-hover:text-white dark:group-hover:text-amber-100 transition-colors leading-tight truncate">
-                      BUKU SAKU SELAI APEL
+                      Buku Resep Selai Apel dan Olahannya
                     </h1>
                   </div>
                   <p className="text-[10px] sm:text-xs text-red-200/90 dark:text-slate-400 font-sans tracking-wide truncate">
@@ -350,7 +350,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       Navigasi Menu Utama
                     </h2>
                     <p className="text-[11px] text-red-200 dark:text-slate-400">
-                      Buku Saku Selai Apel Sumbergondo
+                      Buku Resep Selai Apel dan Olahannya
                     </p>
                   </div>
                 </div>

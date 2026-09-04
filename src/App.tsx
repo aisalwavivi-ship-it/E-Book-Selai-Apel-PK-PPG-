@@ -93,7 +93,7 @@ export default function App() {
     statusText: '',
     currentPage: 0,
     totalPages: 10,
-    documentTitle: 'Buku Saku Kreasi Selai Apel (10 Halaman Lengkap)',
+    documentTitle: 'Buku Resep Selai Apel dan Olahannya (10 Halaman Lengkap)',
     isCompleted: false,
   });
 
@@ -105,7 +105,7 @@ export default function App() {
         statusText: 'Menyiapkan berkas PDF e-book 10 halaman...',
         currentPage: 1,
         totalPages: 10,
-        documentTitle: 'Buku Saku Kreasi Selai Apel (10 Halaman Lengkap)',
+        documentTitle: 'Buku Resep Selai Apel dan Olahannya (10 Halaman Lengkap)',
         isCompleted: false,
       });
 
@@ -118,7 +118,7 @@ export default function App() {
             statusText: msg,
             currentPage: current,
             totalPages: total,
-            documentTitle: 'Buku Saku Kreasi Selai Apel (10 Halaman Lengkap)',
+            documentTitle: 'Buku Resep Selai Apel dan Olahannya (10 Halaman Lengkap)',
             isCompleted: false,
           });
         },
@@ -178,7 +178,7 @@ export default function App() {
       window.speechSynthesis.cancel();
       setIsAudioSpeaking(false);
     } else {
-      speakText("Selamat datang di Buku Saku Kreasi Selai Apel Desa Sumbergondo Bumiaji Kota Batu. Anda dapat menjelajahi resep selai apel, nastar apel, dan kalkulator profit UMKM.");
+      speakText("Selamat datang di Buku Resep Selai Apel dan Olahannya Desa Sumbergondo Bumiaji Kota Batu. Anda dapat menjelajahi resep selai apel, nastar apel, dan kalkulator profit UMKM.");
     }
   };
 
@@ -277,7 +277,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
             <div className="space-y-0.5">
               <p className="font-serif font-bold text-red-100 dark:text-amber-200 text-sm">
-                Buku Saku Kreasi Selai Apel • Desa Sumbergondo, Bumiaji, Kota Batu
+                Buku Resep Selai Apel dan Olahannya • Desa Sumbergondo, Bumiaji, Kota Batu
               </p>
               <p className="text-red-300/90 dark:text-slate-400 text-[11px]">
                 Proyek Kepemimpinan PGSD Universitas Muhammadiyah Malang • Pembimbing: Dr. Anis Farida Jamil, M.Pd.

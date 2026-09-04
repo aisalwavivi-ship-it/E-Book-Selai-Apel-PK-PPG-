@@ -1401,7 +1401,7 @@ export const RecipeModal: React.FC<RecipeModalProps> = ({
               </div>
               <div>
                 <span className="text-[10px] font-bold text-red-800 uppercase tracking-widest block">
-                  BUKU SAKU KREASI SELAI APEL ANNA • SUMBERGONDO BUMIAJI KOTA BATU
+                  BUKU RESEP SELAI APEL DAN OLAHANNYA • SUMBERGONDO BUMIAJI KOTA BATU
                 </span>
                 <h1 className="font-serif text-2xl font-extrabold text-red-950 leading-tight">
                   {recipe.title}

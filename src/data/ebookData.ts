@@ -104,7 +104,7 @@ export interface EbookMetadata {
 }
 
 export const ebookMetadata: EbookMetadata = {
-  title: "BUKU SAKU KREASI SELAI APEL",
+  title: "Buku Resep Selai Apel dan Olahannya",
   subtitle: "Panduan Olahan Selai Apel Anna & Inovasi Jajanan Bernilai Tambah Bagi Masyarakat Desa Sumbergondo",
   edition: "Edisi Praktis Panduan UMKM",
   publisher: "Tim Proyek Kepemimpinan & Pengabdian Masyarakat",
@@ -112,7 +112,7 @@ export const ebookMetadata: EbookMetadata = {
   institution: "Universitas Muhammadiyah Malang",
   location: "Desa Sumbergondo, Bumiaji, Kota Batu",
   year: "Panduan Berkelanjutan",
-  description: "Buku Saku Digital Interaktif ini disusun sebagai panduan praktis diversifikasi produk olahan apel afkir/BS menjadi selai apel berkualitas dan aneka olahan kue bernilai ekonomi tinggi.",
+  description: "Buku Resep Selai Apel dan Olahannya ini disusun sebagai panduan praktis diversifikasi produk olahan apel afkir/BS menjadi selai apel berkualitas dan aneka olahan kue bernilai ekonomi tinggi.",
   targetAudience: "Masyarakat, Pelaku UMKM, dan Ibu-Ibu Kelompok Tani Desa Sumbergondo"
 };
 
@@ -471,7 +471,7 @@ export const recipesData: Recipe[] = [
 export const bookPages: BookPage[] = [
   {
     pageNumber: 1,
-    title: "BUKU SAKU KREASI SELAI APEL",
+    title: "Buku Resep Selai Apel dan Olahannya",
     subtitle: "Panduan Olahan Selai Apel Anna & Inovasi Jajanan Bernilai Tambah Bagi Masyarakat Desa Sumbergondo",
     type: "cover",
     content: {
@@ -495,7 +495,7 @@ export const bookPages: BookPage[] = [
     content: {
       heading: "Sambutan Tim Pengabdi & Pembimbing",
       paragraphs: [
-        "Puji syukur kami panjatkan kehadirat Tuhan Yang Maha Esa atas terwujudnya Buku Saku Kreasi Selai Apel ini. Buku ini disusun sebagai bagian dari luaran konkret Proyek Kepemimpinan dan Pengabdian Masyarakat di Desa Sumbergondo, Kecamatan Bumiaji, Kota Batu.",
+        "Puji syukur kami panjatkan kehadirat Tuhan Yang Maha Esa atas terwujudnya Buku Resep Selai Apel dan Olahannya ini. Buku ini disusun sebagai bagian dari luaran konkret Proyek Kepemimpinan dan Pengabdian Masyarakat di Desa Sumbergondo, Kecamatan Bumiaji, Kota Batu.",
         "Desa Sumbergondo memiliki potensi melimpah komoditas Apel Anna. Namun fluktuasi harga dan kendala buah afkir/BS sering menurunkan pendapatan petani. Melalui diversifikasi olahan selai apel dan jajanan turunan, kami berharap masyarakat dapat meningkatkan nilai ekonomi hasil panen secara berkelanjutan."
       ],
       calloutBox: {

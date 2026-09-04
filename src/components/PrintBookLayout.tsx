@@ -66,7 +66,7 @@ export const PrintBookLayout: React.FC = () => {
               <div className="flex items-center justify-between border-b-2 border-red-300/80 pb-2 mb-3 text-xs text-red-900 uppercase font-bold tracking-widest relative z-10 pr-28 sm:pr-32 gap-2">
                 <span className="flex items-center space-x-2 truncate">
                   <span className="text-base">🍏</span>
-                  <span>{page.chapterTitle || 'BUKU SAKU KREASI SELAI APEL'}</span>
+                  <span>{page.chapterTitle || 'BUKU RESEP SELAI APEL DAN OLAHANNYA'}</span>
                 </span>
                 <span className="font-serif italic font-normal text-red-800 text-sm whitespace-nowrap shrink-0 mr-3">
                   Desa Sumbergondo - Kota Batu
@@ -691,7 +691,7 @@ export const PrintBookLayout: React.FC = () => {
             <div className="flex items-center justify-between border-b-2 border-red-300/80 pb-2 mb-3 text-xs text-red-900 uppercase font-bold tracking-widest relative z-10 pr-28 sm:pr-32 gap-2">
               <span className="flex items-center space-x-2 truncate">
                 <span className="text-base">🍏</span>
-                <span>BUKU SAKU KREASI SELAI APEL • RESEP RESMI DESA SUMBERGONDO</span>
+                <span>BUKU RESEP SELAI APEL DAN OLAHANNYA • RESEP RESMI DESA SUMBERGONDO</span>
               </span>
               <span className="font-serif italic font-normal text-red-800 text-sm whitespace-nowrap shrink-0 mr-3">
                 Desa Sumbergondo - Kota Batu
