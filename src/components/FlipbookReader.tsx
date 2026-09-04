@@ -730,23 +730,25 @@ export const FlipbookReader: React.FC<FlipbookReaderProps> = ({
 
             {/* 4. ARTICLE PAGE */}
             {pageData.type === 'article' && (
-              <div className="space-y-4 sm:space-y-6">
+              <div className="space-y-3.5 sm:space-y-5">
                 <h2 className="font-serif text-xl sm:text-3xl font-bold text-red-950 dark:text-slate-100 border-b-2 border-red-300 dark:border-slate-700 pb-2">
                   {pageData.title}
                 </h2>
 
-                <div className="space-y-3 sm:space-y-4 text-xs sm:text-base text-red-900 dark:text-slate-300 leading-relaxed">
+                <div className="space-y-3 sm:space-y-4 text-xs xs:text-sm sm:text-base text-red-950 dark:text-slate-200 leading-relaxed sm:leading-relaxed text-justify">
                   {pageData.content.paragraphs?.map((p, idx) => (
-                    <p key={idx}>{p}</p>
+                    <p key={idx} className="indent-4 sm:indent-8 text-justify leading-relaxed">
+                      {p}
+                    </p>
                   ))}
                 </div>
 
                 {pageData.content.calloutBox && (
-                  <div className="bg-rose-100 dark:bg-slate-800 border-l-4 border-red-600 dark:border-amber-400 p-3 sm:p-4 rounded-r-xl sm:rounded-r-2xl shadow-xs my-2.5 sm:my-4">
+                  <div className="bg-rose-100 dark:bg-slate-800 border-l-4 border-red-600 dark:border-amber-400 p-3 sm:p-4 rounded-r-xl sm:rounded-r-2xl shadow-xs my-2.5 sm:my-3">
                     <h4 className="font-serif font-bold text-red-950 dark:text-amber-300 text-xs sm:text-sm mb-1">
                       💡 {pageData.content.calloutBox.title}
                     </h4>
-                    <p className="text-[11px] sm:text-sm text-red-900 dark:text-slate-300">
+                    <p className="text-[11px] sm:text-sm text-red-900 dark:text-slate-300 leading-relaxed text-justify">
                       {pageData.content.calloutBox.text}
                     </p>
                   </div>

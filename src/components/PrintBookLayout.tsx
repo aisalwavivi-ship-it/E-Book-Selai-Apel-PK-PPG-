@@ -308,20 +308,20 @@ export const PrintBookLayout: React.FC = () => {
                         </h2>
                       </div>
 
-                      <div className="space-y-2.5 text-[13.5px] text-red-950 leading-relaxed text-justify">
+                      <div className="space-y-2.5 text-[12.5px] text-red-950 leading-relaxed text-justify">
                         {page.content.paragraphs?.map((p, idx) => (
-                          <p key={idx} className="indent-4 leading-relaxed">
+                          <p key={idx} className="indent-4 leading-relaxed text-justify">
                             {p}
                           </p>
                         ))}
                       </div>
 
                       {page.content.calloutBox && (
-                        <div className="bg-rose-100 border-l-4 border-red-600 p-3 rounded-r-xl shadow-2xs">
-                          <h4 className="font-serif font-bold text-red-950 text-xs mb-1">
+                        <div className="bg-rose-100 border-l-4 border-red-600 p-2.5 rounded-r-xl shadow-2xs">
+                          <h4 className="font-serif font-bold text-red-950 text-xs mb-0.5">
                             💡 {page.content.calloutBox.title}
                           </h4>
-                          <p className="text-xs text-red-900 leading-relaxed">
+                          <p className="text-xs text-red-900 leading-relaxed text-justify">
                             {page.content.calloutBox.text}
                           </p>
                         </div>

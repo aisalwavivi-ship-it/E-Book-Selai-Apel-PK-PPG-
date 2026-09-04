@@ -532,10 +532,10 @@ export const bookPages: BookPage[] = [
     chapterTitle: "BAB I: POTENSI & PENGOLAHAN APEL",
     type: "article",
     content: {
-      heading: "Solusi Pemanfaatan Apel Afkir / BS Nilai Tambah Tinggi",
+      heading: "Inovasi Pascapanen & Optimalisasi Apel Anna Zero Waste",
       paragraphs: [
-        "Apel Anna merupakan salah satu varietas apel unggulan Kota Batu dengan ciri khas perpaduan warna merah-kuning dan rasa manis asam segar. Di Desa Sumbergondo, panen apel kerap menghasilkan apel berukuran kecil atau bercacat fisik ringan (diistilahkan sebagai 'apel BS' atau 'apel afkir').",
-        "Meskipun memiliki cacat fisik tampilan luar, bagian daging buah apel afkir masih sangat layak dan kaya akan kandungan nutrisi serta pektin alami. Mengolahnya menjadi selai apel memperpanjang masa simpan dari 1 minggu menjadi 6 bulan!"
+        "Desa Sumbergondo di Kecamatan Bumiaji, Kota Batu, memiliki peran strategis sebagai salah satu sentra penghasil apel varietas Anna yang menjadi komoditas unggulan dan ikon daerah. Apel Anna dikenal luas dengan ciri khas bentuknya yang sedikit memanjang serta kulit buah berwarna merah merona dipadu nuansa kekuningan atau hijau saat matang. Daging buahnya berwarna kekuningan, bertekstur relatif renyah namun lembut (masir), mengandung cukup banyak air, serta menawarkan aroma yang harum dan perpaduan rasa segar manis-asam yang khas. Meski potensinya sangat besar, keberadaan perkebunan apel Anna kini menghadapi tantangan serius seperti alih fungsi lahan dan penurunan kualitas tanah sehingga diperlukan langkah strategis untuk menjaga keberlanjutannya.",
+        "Salah satu bentuk optimalisasi potensi apel Anna adalah melalui penerapan inovasi pengolahan pascapanen berbasis prinsip zero waste. Karakter rasa dan kandungan airnya membuat daging buah apel Anna dari berbagai tingkat kualitas (grade) sangat cocok diolah menjadi selai apel yang tahan lama, beraroma kuat, dan bernilai jual tinggi untuk industri bakery maupun pastry. Tidak hanya daging buahnya, limbah kulit apel yang berwarna merah menawan hasil dari pengolahan selai juga dapat dimanfaatkan kembali menjadi pupuk organik cair (POC) untuk mendukung kesuburan tanah perkebunan warga. Pendekatan terpadu ini tidak hanya membuka peluang usaha baru bagi kelompok masyarakat seperti ibu-ibu Dasawisma, tetapi juga memberikan nilai tambah (added value) serta mendukung ketahanan ekonomi keluarga petani secara berkelanjutan."
       ],
       calloutBox: {
         title: "Pencegahan Oksidasi Apel",
