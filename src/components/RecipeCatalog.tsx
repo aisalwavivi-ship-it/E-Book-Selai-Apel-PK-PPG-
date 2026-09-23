@@ -102,28 +102,88 @@ export const RecipeCatalog: React.FC<RecipeCatalogProps> = ({
     return false;
   };
 
+  // Helper to find ingredients matching current search query
+  const getMatchedIngredients = (recipe: Recipe, query: string): string[] => {
+    const q = query.toLowerCase().trim();
+    if (!q) return [];
+    return recipe.ingredients
+      .filter(
+        (ing) =>
+          ing.name.toLowerCase().includes(q) ||
+          (ing.notes && ing.notes.toLowerCase().includes(q))
+      )
+      .map((ing) => ing.name);
+  };
+
   const filteredRecipes = useMemo(() => {
     return recipesData.filter((recipe) => {
       const q = searchQuery.toLowerCase().trim();
-      const matchesSearch =
-        !q ||
-        recipe.title.toLowerCase().includes(q) ||
-        recipe.subtitle.toLowerCase().includes(q) ||
-        recipe.categoryLabel.toLowerCase().includes(q) ||
-        recipe.tags.some((tag) => tag.toLowerCase().includes(q)) ||
-        recipe.ingredients.some((ing) => ing.name.toLowerCase().includes(q));
+
+      // Real-time filter by title or ingredients
+      let matchesSearch = true;
+      if (q) {
+        const matchesTitle =
+          recipe.title.toLowerCase().includes(q) ||
+          recipe.subtitle.toLowerCase().includes(q);
+
+        const matchesIngredients = recipe.ingredients.some(
+          (ing) =>
+            ing.name.toLowerCase().includes(q) ||
+            (ing.notes && ing.notes.toLowerCase().includes(q))
+        );
+
+        const matchesTags = recipe.tags.some((tag) => tag.toLowerCase().includes(q));
+        const matchesCategoryLabel = recipe.categoryLabel.toLowerCase().includes(q);
+
+        // Multi-term support (e.g. "apel kayu" or "tepung mentega")
+        const terms = q.split(/\s+/).filter(Boolean);
+        const allTermsMatch =
+          terms.length > 1 &&
+          terms.every((term) => {
+            const inTitle =
+              recipe.title.toLowerCase().includes(term) ||
+              recipe.subtitle.toLowerCase().includes(term);
+            const inIngredients = recipe.ingredients.some(
+              (ing) =>
+                ing.name.toLowerCase().includes(term) ||
+                (ing.notes && ing.notes.toLowerCase().includes(term))
+            );
+            const inTags = recipe.tags.some((tag) => tag.toLowerCase().includes(term));
+            return inTitle || inIngredients || inTags;
+          });
+
+        matchesSearch =
+          matchesTitle ||
+          matchesIngredients ||
+          matchesTags ||
+          matchesCategoryLabel ||
+          allTermsMatch;
+      }
 
       const matchesCategory = isRecipeInCategory(recipe, selectedCategory);
 
       const matchesDifficulty =
-        selectedDifficulty === 'all' || recipe.difficulty.toLowerCase() === selectedDifficulty.toLowerCase();
+        selectedDifficulty === 'all' ||
+        recipe.difficulty.toLowerCase() === selectedDifficulty.toLowerCase();
 
       return matchesSearch && matchesCategory && matchesDifficulty;
     });
   }, [searchQuery, selectedCategory, selectedDifficulty]);
 
+  // Suggested quick search terms for titles and ingredients
+  const quickSearchSuggestions = [
+    { label: 'Apel Anna', type: 'bahan' },
+    { label: 'Kayu Manis', type: 'bahan' },
+    { label: 'Mentega', type: 'bahan' },
+    { label: 'Lemon', type: 'bahan' },
+    { label: 'Nastar', type: 'judul' },
+    { label: 'Pie Apel', type: 'judul' },
+    { label: 'Pektin', type: 'bahan' },
+    { label: 'Teh', type: 'minuman' },
+  ];
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-red-900 via-rose-900 to-red-950 dark:from-slate-900 dark:via-red-950 dark:to-slate-900 text-red-50 dark:text-slate-100 p-8 sm:p-10 rounded-3xl shadow-xl border border-red-700/50 dark:border-slate-800 relative overflow-hidden transition-colors">
         <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 bg-[radial-gradient(#ef4444_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
@@ -136,15 +196,114 @@ export const RecipeCatalog: React.FC<RecipeCatalogProps> = ({
             Katalog Resep Selai Apel Anna
           </h2>
           <p className="text-sm sm:text-base text-rose-200 dark:text-slate-300 font-sans leading-relaxed">
-            Gunakan filter kategori di bawah untuk menjelajahi berbagai macam diversifikasi produk selai apel Desa Sumbergondo: dari <strong>Selai Murni</strong>, <strong>Jajanan & Kue Kering</strong>, hingga <strong>Minuman Segar</strong>.
+            Gunakan kotak pencarian dan filter di bawah untuk menemukan aneka olahan apel Desa Sumbergondo: dari <strong>Selai Murni</strong>, <strong>Jajanan & Kue Kering</strong>, hingga <strong>Minuman Segar</strong>.
           </p>
+        </div>
+      </div>
+
+      {/* TOP SEARCHABLE INPUT FIELD (Real-time Filter by Title or Ingredients) */}
+      <div className="bg-white dark:bg-slate-900 p-5 sm:p-6 rounded-3xl border-2 border-red-200/90 dark:border-slate-800 shadow-sm transition-colors space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="flex items-center space-x-2.5">
+            <div className="w-9 h-9 rounded-2xl bg-red-100 dark:bg-slate-800 text-red-900 dark:text-amber-400 flex items-center justify-center font-bold shadow-2xs">
+              <Search className="w-5 h-5 text-red-700 dark:text-amber-400" />
+            </div>
+            <div>
+              <h3 className="font-serif font-bold text-base sm:text-lg text-red-950 dark:text-slate-100">
+                Pencarian Resep & Bahan Baku
+              </h3>
+              <p className="text-xs text-red-800/80 dark:text-slate-400">
+                Ketik nama resep atau bahan untuk menyaring secara real-time
+              </p>
+            </div>
+          </div>
+
+          {/* Real-time search status badge */}
+          <div className="text-xs font-medium self-start sm:self-auto">
+            {searchQuery ? (
+              <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-red-100 dark:bg-slate-800 text-red-900 dark:text-amber-300 border border-red-200 dark:border-slate-700">
+                <span>Ditemukan:</span>
+                <strong className="font-bold font-mono">{filteredRecipes.length}</strong>
+                <span>resep</span>
+              </span>
+            ) : (
+              <span className="text-red-700/70 dark:text-slate-400 hidden sm:inline">
+                Total {recipesData.length} resep olahan tersedia
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Input Bar */}
+        <div className="relative">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none flex items-center">
+            <Search className="w-5 h-5 text-red-600 dark:text-amber-400" />
+          </div>
+
+          <input
+            type="text"
+            id="recipe-search-input"
+            aria-label="Cari resep berdasarkan judul atau bahan"
+            placeholder="Cari judul resep atau bahan (contoh: Apel Anna, Kayu Manis, Mentega, Lemon, Tepung, Pektin)..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                setSearchQuery('');
+              }
+            }}
+            className="w-full pl-12 pr-24 py-3.5 sm:py-4 rounded-2xl border-2 border-red-200 dark:border-slate-700 bg-rose-50/40 dark:bg-slate-800/80 text-red-950 dark:text-slate-100 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-amber-400 focus:border-red-500 font-medium placeholder-red-400/80 dark:placeholder-slate-500 shadow-inner transition-all"
+          />
+
+          <div className="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center space-x-2">
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="px-2 py-1 rounded-lg text-xs font-bold text-red-700 dark:text-slate-300 bg-red-100 dark:bg-slate-700 hover:bg-red-200 dark:hover:bg-slate-600 flex items-center space-x-1 cursor-pointer transition-colors"
+                title="Hapus pencarian (Esc)"
+              >
+                <X className="w-3.5 h-3.5" />
+                <span className="hidden xs:inline">Hapus</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Quick Search Suggestions */}
+        <div className="flex flex-wrap items-center gap-1.5 pt-1 text-xs">
+          <span className="text-red-900/80 dark:text-slate-400 font-semibold mr-1 flex items-center space-x-1">
+            <span>Saran pencarian:</span>
+          </span>
+          {quickSearchSuggestions.map((item) => {
+            const isActive = searchQuery.toLowerCase() === item.label.toLowerCase();
+            return (
+              <button
+                key={item.label}
+                type="button"
+                onClick={() => {
+                  setSearchQuery(isActive ? '' : item.label);
+                }}
+                className={`px-2.5 py-1 rounded-xl text-xs font-medium transition-all cursor-pointer flex items-center space-x-1 border ${
+                  isActive
+                    ? 'bg-red-800 dark:bg-amber-400 text-white dark:text-slate-950 border-red-900 dark:border-amber-500 font-bold shadow-2xs'
+                    : 'bg-rose-50/80 dark:bg-slate-800 text-red-900 dark:text-slate-300 border-red-200/80 dark:border-slate-700 hover:bg-rose-100 dark:hover:bg-slate-750'
+                }`}
+              >
+                <span>{item.label}</span>
+                {item.type === 'bahan' && (
+                  <span className="text-[10px] opacity-70">(bahan)</span>
+                )}
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {/* FILTER CHIPS SECTION */}
       <div className="bg-white dark:bg-slate-900 p-5 rounded-3xl border border-red-200 dark:border-slate-800 shadow-sm space-y-4 transition-colors">
-        {/* Chips Header & Search Bar */}
-        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+        {/* Chips Header */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-xl bg-red-100 dark:bg-slate-800 text-red-900 dark:text-amber-400 flex items-center justify-center font-bold">
               <Filter className="w-4 h-4" />
@@ -159,25 +318,19 @@ export const RecipeCatalog: React.FC<RecipeCatalogProps> = ({
             </div>
           </div>
 
-          {/* Search Input */}
-          <div className="relative w-full md:w-80">
-            <Search className="w-4 h-4 text-red-700 dark:text-amber-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              placeholder="Cari resep, bahan, atau kue..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-red-200 dark:border-slate-700 bg-rose-50/50 dark:bg-slate-800 text-red-950 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 font-medium placeholder-red-400/70 dark:placeholder-slate-400 shadow-2xs"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-red-700 dark:text-slate-300 bg-red-100 dark:bg-slate-700 hover:bg-red-200 dark:hover:bg-slate-600 w-5 h-5 rounded-full flex items-center justify-center cursor-pointer"
-                title="Hapus pencarian"
-              >
-                ✕
-              </button>
-            )}
+          {/* Difficulty Dropdown Filter */}
+          <div className="flex items-center space-x-2 text-xs">
+            <span className="text-red-900/80 dark:text-slate-400 font-medium">Tingkat Kesulitan:</span>
+            <select
+              value={selectedDifficulty}
+              onChange={(e) => setSelectedDifficulty(e.target.value)}
+              className="px-2.5 py-1.5 rounded-xl border border-red-200 dark:border-slate-700 bg-rose-50/50 dark:bg-slate-800 text-red-950 dark:text-slate-200 font-medium text-xs focus:outline-none focus:ring-1 focus:ring-red-500 cursor-pointer"
+            >
+              <option value="all">Semua Tingkat</option>
+              <option value="mudah">Mudah</option>
+              <option value="sedang">Sedang</option>
+              <option value="tantangan">Tantangan</option>
+            </select>
           </div>
         </div>
 
@@ -329,6 +482,7 @@ export const RecipeCatalog: React.FC<RecipeCatalogProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredRecipes.map((recipe) => {
             const isBookmarked = savedBookmarkIds.includes(recipe.id);
+            const matchedIngredients = getMatchedIngredients(recipe, searchQuery);
             return (
               <div
                 key={recipe.id}
@@ -423,6 +577,17 @@ export const RecipeCatalog: React.FC<RecipeCatalogProps> = ({
                     <p className="text-xs text-red-900/80 dark:text-slate-400 font-sans line-clamp-2 leading-relaxed">
                       {recipe.description}
                     </p>
+
+                    {/* Real-time Matched Ingredients Badge */}
+                    {searchQuery.trim() && matchedIngredients.length > 0 && (
+                      <div className="mt-2 inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-700 text-[11px] text-amber-900 dark:text-amber-300">
+                        <span className="font-bold">🌿 Bahan cocok:</span>
+                        <span className="font-medium truncate max-w-[200px]">
+                          {matchedIngredients.slice(0, 2).join(', ')}
+                          {matchedIngredients.length > 2 ? ` (+${matchedIngredients.length - 2})` : ''}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Tags */}
